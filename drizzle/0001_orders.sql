@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS orders (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  order_date TEXT NOT NULL,
+  order_no TEXT NOT NULL UNIQUE,
+  sku TEXT NOT NULL,
+  quantity INTEGER NOT NULL DEFAULT 1,
+  revenue REAL NOT NULL DEFAULT 0,
+  status TEXT NOT NULL DEFAULT '已付款',
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_orders_date_sku ON orders(order_date, sku);
+PRAGMA optimize;
